@@ -1,0 +1,6 @@
+Revision history for Perl extension CF::Util::Common.
+
+0.01  Fri Nov 27 16:38:51 2015
+	- original version; created by h2xs 1.23 with options
+		-XAn CF::Util::Common
+
