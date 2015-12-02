@@ -2,8 +2,8 @@ package CF::Util::Common;
 
 use 5.018002;
 use namespace::autoclean;
-use YAML::XS 'LoadFile';
 use Data::Dumper;
+use Config::Any;
 use Moose;
 
 our $VERSION = '0.01';
@@ -13,7 +13,9 @@ has 'config' => ( is => 'rw', isa => 'HashRef' );
 sub load {
     my $self = shift;
     my $filename = shift;
-    $self->config(LoadFile($filename));
+    my @files = ($filename);
+    my $cfg = Config::Any->load_files({files => \@files, use_ext => 1});
+    $self->config($cfg->[0]{$filename});
 }
 
 1;
@@ -22,16 +24,16 @@ __END__
 
 =head1 NAME
 
-CF::DB::Connection - Perl extension for blah blah blah
+CF::Util::Common - Perl extension for blah blah blah
 
 =head1 SYNOPSIS
 
-  use CF::DB::Connection;
+  use CF::Util::Common;
   blah blah blah
 
 =head1 DESCRIPTION
 
-Stub documentation for CF::DB::Connection, created by h2xs. It looks like the
+Stub documentation for CF::Util::Common, created by h2xs. It looks like the
 author of the extension was negligent enough to leave the stub
 unedited.
 
